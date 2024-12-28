@@ -1,0 +1,38 @@
+{
+    "name": "NativeLocalStorage",
+    "version": "0.0.1",
+    "description": "Add numbers with Turbo Native Modules",
+    "main": "spec/NativeLocalStorage",
+    "files": [
+      "spec",
+      "android",
+      "ios",
+      "NativeLocalStorage.podspec",
+      "!android/build",
+      "!ios/build",
+      "!**/__tests__",
+      "!**/__fixtures__",
+      "!**/__mocks__"
+    ],
+    "keywords": ["react-native", "ios", "android"],
+    "repository": "https://github.com/<your_github_handle>/rn-calculator",
+    "author": "<Your Name> <your_email@your_provider.com> (https://github.com/<your_github_handle>)",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/<your_github_handle>/rn-calculator/issues"
+    },
+    "homepage": "https://github.com/<your_github_handle>/rn-calculator#readme",
+    "devDependencies": {},
+    "peerDependencies": {
+      "react": "*",
+      "react-native": "*"
+    },
+    "codegenConfig": {
+    "name": "NativeLocalStorageSpec",
+    "type": "modules",
+    "jsSrcsDir": "spec",
+    "android": {
+      "javaPackageName": "com.nativelocalstorage"
+    }
+  }
+}
