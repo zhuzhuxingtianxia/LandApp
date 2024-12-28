@@ -1,0 +1,20 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["app/*"],
+      "@components/*": ["app/components/*"],
+      "@pages/*": ["app/pages/*"],
+      "@utils/*": ["app/utils/*"],
+      "@assets/*": ["app/assets/*"],
+      "@services/*": ["app/services/*"],
+    }
+  },
+  "include": ["./app/**/*.ts", "./app/**/*.tsx"]
+}
