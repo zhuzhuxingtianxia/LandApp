@@ -25,8 +25,10 @@ npx pod-install ios
 * @react-native-masked-view/masked-view: 遮罩库
 * react-native-orientation-locker: 转屏库
 * react-native-video: 视频播放器库
-* react-native-image-picker / react-native-image-crop-picker: 图库选择器，需要相机、相册、麦克风权限
-* react-native-vision-camera/@react-native-camera-roll/camera-roll: 需相机权限
+* react-native-video-controls: 视频播放器控制库
+* react-native-image-picker 或 react-native-image-crop-picker: 图库选择器，需要相机、相册、麦克风权限
+* react-native-vision-camera或react-native-camera: 相机库
+* @react-native-camera-roll/camera-roll: 保存图片到相册，获取相册图片
 * react-native-image-zoom-viewer: 图片预览，5年没维护了
 * react-native-image-pan-zoom: 图片预览,存档。5年没维护了
 * react-native-pager-view: 轮播图(可使用antd)
@@ -57,6 +59,11 @@ yarn add react-native-reanimated react-native-gesture-handler @shopify/react-nat
 yarn add victory-native
 ```
 * @wuba/react-native-echarts: 58 图表库
+```
+yarn add @wuba/react-native-echarts echarts
+yarn add react-native-reanimated
+yarn add @shopify/react-native-skia
+```
 * react-native-svg-charts: 图表库，5年未更新
 * react-native-chart-kit: 图表库，3年未更新
 * clchart: 股票图表库，6年未更新
@@ -70,6 +77,9 @@ yarn add victory-native
 * react-native-i18n: 多语言库，6年未更新
 * react-native-localize i18n-js : 多语言库，使用这两个库配合实现多语言（推荐）。也可自己配置实现
 * react-native-pull: 下拉刷新组件，不涉及原生。适合[自定义二次开发](https://www.showapi.com/news/article/66f8d3ed4ddd79f11a211f2e) 
+* react-native-calendar-reminders: 事件添加提醒事项仅iOS可用
+* react-native-calendar-events: 事件添加到日历，iOS和Android都可用
+
 
 ## 配置别名
 ```

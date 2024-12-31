@@ -1,0 +1,20 @@
+{
+  "name": "rn-event-reminders",
+  "version": "0.0.1",
+  "description": "ios 事项提醒",
+  "main": "src/index",
+  "react-native": "src/index",
+  "source": "src/index",
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "create-react-native-library": {
+    "type": "legacy-module",
+    "languages": "kotlin-objc",
+    "version": "0.45.5"
+  }
+}

@@ -42,7 +42,8 @@
     "react-native-webview": "^13.12.5",
     "react-redux": "^9.2.0",
     "NativeLocalStorage": "link:./modules/NativeLocalStorage",
-    "module-name": "link:./modules/module-name"
+    "module-name": "link:./modules/module-name",
+    "react-native-calendar-reminders": "file:./modules/calendar-reminders"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
