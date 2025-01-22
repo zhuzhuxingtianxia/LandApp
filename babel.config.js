@@ -18,8 +18,9 @@ const aliasConfig = {
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
-    ["module-resolver", aliasConfig],
-    ['babel-plugin-inline-import', { extensions: ['.svg'] }],
-    ["import", { libraryName: "@ant-design/react-native" }]
-  ]
+    ['module-resolver', aliasConfig],
+    ['import', { libraryName: '@ant-design/react-native' }],
+    // 这个需要放在最后
+    'react-native-reanimated/plugin',
+  ],
 };

@@ -31,6 +31,7 @@ npx pod-install ios
 * @react-native-camera-roll/camera-roll: 保存图片到相册，获取相册图片
 * react-native-image-zoom-viewer: 图片预览，5年没维护了
 * react-native-image-pan-zoom: 图片预览,存档。5年没维护了
+* react-native-awesome-gallery: 图片预览
 * react-native-pager-view: 轮播图(可使用antd)
 * react-native-swiper/react-native-snap-carousel: 轮播图, 5年没更新(可使用antd)
 * @react-native-community/slider：滑块(可使用antd)
