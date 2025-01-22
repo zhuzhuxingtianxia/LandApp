@@ -1,3 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -5,6 +8,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import HomePage from '../MainPage/HomePage';
 import MyHome from '../MyPage/MyHome';
+import FindHome from '../Find/index';
+
+import TabbarBtnHig from '@assets/tabbar/tabbar_btn_sy_hig.svg';
+import TabbarBtnNor from '@assets/tabbar/tabbar_btn_sy_nor.svg';
 
 const TabHome = require('@assets/tabbar/home-icon.png');
 const TabHomeSelect = require('@assets/tabbar/home-selected-icon.png');
@@ -23,9 +30,9 @@ const Layout = () => {
 
 
     return (
-        <Tab.Navigator 
+        <Tab.Navigator
             // tabBar={(props) => <TabBar {...props} />}
-            initialRouteName='HomePage'
+            initialRouteName="HomePage"
             screenOptions={{
                 animation: 'fade',
                 // headerShown: false,
@@ -33,44 +40,54 @@ const Layout = () => {
                 tabBarActiveTintColor: '#E6D39F',
             }}
         >
-            <Tab.Screen name="HomePage" 
-                component={HomePage} 
+            <Tab.Screen name="HomePage"
+                component={HomePage}
                 options={{
                     headerShown: false,
                     title: '首页',
                     tabBarLabel: '首页',
                     tabBarAccessibilityLabel: '首页x',
                     tabBarIcon: ({ focused, color, size }) => {
-                        return <Image 
-                                    source={ focused ? TabHomeSelect:TabHome } 
+                        return <Image
+                                    source={ focused ? TabHomeSelect : TabHome }
                                     style={{ width: 30, height: 30 }}
-                                />
+                                />;
                     },
                     tabBarBadge: 3,
                 }}
             />
-            <Tab.Screen name="MyHome" component={MyHome} 
+            <Tab.Screen
+                name="find"
+                component={FindHome}
+                options={{
+                    tabBarLabel: '发现',
+                    tabBarIcon: ({ focused, color, size }) => {
+                        return focused ? <TabbarBtnHig width={size}/> : <TabbarBtnNor width={size} />;
+                    },
+                }}
+            />
+            <Tab.Screen name="MyHome" component={MyHome}
                 options={{
                     title: '我的',
                     tabBarLabel: '我的',
                     tabBarAccessibilityLabel: '我的x',
                     tabBarIcon: ({ focused, color, size }) => {
-                        return <Image 
-                                    source={ focused ? TabMySelect:TabMy } 
+                        return <Image
+                                    source={ focused ? TabMySelect : TabMy }
                                     style={{ width: 30, height: 30 }}
-                                />
+                                />;
                     },
                 }}
             />
         </Tab.Navigator>
-    )
-}
+    );
+};
 
 export default Layout;
 
 const TabBar = (props = {} as any) => {
     const { state, descriptors, navigation } = props;
-  
+
     return (
         <View style={styles.tabBarBox}>
             {state.routes.map((route: any, index: number) => {
@@ -124,14 +141,14 @@ const TabBar = (props = {} as any) => {
                 );
             })}
         </View>
-    )
-}
+    );
+};
 const styles = StyleSheet.create({
     tabBarBox: {
         flexDirection: 'row',
-        marginBottom: 40
+        marginBottom: 40,
     },
     tabBarBoxItemTxt: {
-        fontSize: 12
-    }
+        fontSize: 12,
+    },
 });

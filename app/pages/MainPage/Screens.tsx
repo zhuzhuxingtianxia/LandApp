@@ -25,40 +25,40 @@ const MianScreens = [
       component: HomePage,
       options: {
         ...bar_config_hide,
-        title: '首页'
-      }
+        title: '首页',
+      },
     },
     {
       name: Main.Guide,
       component: Guide,
       options: {
         ...bar_config_hide,
-        title: '引导页'
-      }
+        title: '引导页',
+      },
     },
     {
       name: Main.Ad,
       component: Ad,
       options: {
         ...bar_config_hide,
-        title: '广告页'
-      }
+        title: '广告页',
+      },
     },
     {
       name: Main.H5,
       component: H5,
       options: {
-        title: 'H5'
-      }
+        title: 'H5',
+      },
     },
     {
       name: Main.Blur,
       component: Blur,
       options: {
         // presentation: 'transparentModal', // 半透明
-        // presentation: 'fullScreenModal',  
-        title: '模糊'
-      }
+        // presentation: 'fullScreenModal', 
+        title: '模糊',
+      },
     },
     {
       name: Main.Gradient,
@@ -91,7 +91,7 @@ const MianScreens = [
     {
       name: Main.FailingComponent,
       component: FailingComponent,
-    }
-]
+    },
+];
 
 export default MianScreens;
