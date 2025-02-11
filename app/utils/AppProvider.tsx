@@ -5,15 +5,18 @@ import { Provider as ReduxProvider } from 'react-redux';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import { store } from '@/redux/store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-dayjs.locale('zh-cn')
+dayjs.locale('zh-cn');
 
 const AppProvider = (props: {children: React.JSX.Element}) => {
   return (
     <ReduxProvider store={store}>
-      <Provider locale={zhCN}>{props.children}</Provider>
+      <GestureHandlerRootView>
+        <Provider locale={zhCN}>{props.children}</Provider>
+      </GestureHandlerRootView>
     </ReduxProvider>
-  )
-}
+  );
+};
 
 export default AppProvider;

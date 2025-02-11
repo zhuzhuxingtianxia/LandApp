@@ -36,6 +36,8 @@ npx pod-install ios
 * react-native-swiper/react-native-snap-carousel: 轮播图, 5年没更新(可使用antd)
 * @react-native-community/slider：滑块(可使用antd)
 * react-native-qrcode-svg: 二维码
+* @xlbjs/react-native-amap3d: 高德导航、定位、追踪、搜索(导航包含3d地图)
+* react-native-amap3d-navi: 高德导航、定位(导航包含3d地图)
 ```
 yarn add react-native-svg react-native-qrcode-svg
 ```

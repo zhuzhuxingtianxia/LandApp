@@ -28,6 +28,9 @@ export const Auth = {
     PrivacyPolicy2: 'auth.PrivacyPolicy2',
 }
 
+export const Find = {
+    Home: 'find.Index',
+};
+
 export const My = {
-    
-}
+};
