@@ -15,7 +15,7 @@
   resolved "https://registry.npmmirror.com/@ant-design/icons-react-native/-/icons-react-native-2.3.2.tgz#86e412d1ce8d629534a5d9f45cd3d8f7ca6dae56"
   integrity sha512-ULCN3+elfAsvu71Xa5KODi97Y3P2aUkJm4s8mJaPoRjiU+BR+Y6ejv3vbc40yV62EOdlAOMKhvKbFlsXMjZ2ow==
 
-"@ant-design/react-native@^5.3.1":
+"@ant-design/react-native@^5.3.2":
   version "5.3.2"
   resolved "https://registry.npmmirror.com/@ant-design/react-native/-/react-native-5.3.2.tgz#338455d7984d8832cc6291fb03bde6b773b5f11b"
   integrity sha512-Nd4+n1PzZAkk70moXQYMwQ3iVEePWg82mpPdC8Uwxo8Zq7SF+dXcBQxYeyqdN2IHS5VJ3gDYxDC8mlG0WrV5Lg==
@@ -1849,7 +1849,7 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@react-navigation/bottom-tabs@^7.0.13":
+"@react-navigation/bottom-tabs@^7.0.14":
   version "7.2.0"
   resolved "https://registry.npmmirror.com/@react-navigation/bottom-tabs/-/bottom-tabs-7.2.0.tgz#5b336b823226647a263b4fe743655462796b6aaf"
   integrity sha512-1LxjgnbPyFINyf9Qr5d1YE0pYhuJayg5TCIIFQmbcX4PRhX7FKUXV7cX8OzrKXEdZi/UE/VNXugtozPAR9zgvA==
@@ -1877,7 +1877,7 @@
   dependencies:
     color "^4.2.3"
 
-"@react-navigation/native-stack@^7.1.9":
+"@react-navigation/native-stack@^7.2.0":
   version "7.2.0"
   resolved "https://registry.npmmirror.com/@react-navigation/native-stack/-/native-stack-7.2.0.tgz#8aa489f88d662b3543a931b9cb934bb2e09a4893"
   integrity sha512-mw7Nq9qQrGsmJmCTwIIWB7yY/3tWYXvQswx+HJScGAadIjemvytJXm1fcl3+YZ9T9Ym0aERcVe5kDs+ny3X4vA==
@@ -1912,6 +1912,11 @@
     redux "^5.0.1"
     redux-thunk "^3.1.0"
     reselect "^5.1.0"
+
+"@sdcx/keyboard-insets@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmmirror.com/@sdcx/keyboard-insets/-/keyboard-insets-0.6.0.tgz#cbc8d8f313674d84b017b23bbf554d2ad169d54d"
+  integrity sha512-8HMU833gaWVyKUIaFs+tyaxedTKXM1vAKkhZsnQzWVByc9P5tATSS020kK9rP+8qtgRHZhCwa8KSwdt1/LqlKw==
 
 "@sideway/address@^4.1.5":
   version "4.1.5"
@@ -2326,6 +2331,13 @@
   version "1.2.1"
   resolved "https://registry.npmmirror.com/@ungap/structured-clone/-/structured-clone-1.2.1.tgz#28fa185f67daaf7b7a1a8c1d445132c5d979f8bd"
   integrity sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==
+
+"@xlbjs/react-native-amap3d@^0.0.35":
+  version "0.0.35"
+  resolved "https://registry.npmmirror.com/@xlbjs/react-native-amap3d/-/react-native-amap3d-0.0.35.tgz#c4076f25533fc93660a83f7ad495e9c030ccb5d8"
+  integrity sha512-M5vOF2IiFWK0NbKPhzzCQ/kHbfM84cxXhfWBuxcaNyeHmxml7a4FrW4zUygq//Gl9ew3ZpbR2wlJUfxt9zZkEw==
+  dependencies:
+    supercluster "^7.1.4"
 
 "@xmldom/xmldom@^0.8.8":
   version "0.8.10"
@@ -5270,6 +5282,11 @@ iterator.prototype@^1.1.4:
     has-symbols "^1.1.0"
     set-function-name "^2.0.2"
 
+jcore-react-native@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.npmmirror.com/jcore-react-native/-/jcore-react-native-2.2.5.tgz#a96bd090fd79f436c44f94f93673255fd04e3546"
+  integrity sha512-Xc1GzbeMOcb5V0b/SDiZfPJbCLuzssftZauh5m8cKFYvtAPJOQIE4or8gDXBXSZn47B5i5WJgyLkeBHuynwC1A==
+
 jest-changed-files@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmmirror.com/jest-changed-files/-/jest-changed-files-29.7.0.tgz#1c06d07e77c78e1585d020424dedc10d6e17ac3a"
@@ -5639,6 +5656,11 @@ joi@^17.2.1:
     "@sideway/formula" "^3.0.1"
     "@sideway/pinpoint" "^2.0.0"
 
+jpush-react-native@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.npmmirror.com/jpush-react-native/-/jpush-react-native-3.1.3.tgz#68e5a0dbea55070b3f94886443038acc752a2dc1"
+  integrity sha512-CeZ7ClkQYp+G29P5XkhHpQNjVaXyEAsx5VrrjEtHO5y9d+82U6Dk6EMNJWQunE9aYGFgH/b7FRN0SX5RrhVJtA==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmmirror.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -5789,6 +5811,11 @@ jsonfile@^6.0.1:
     array.prototype.flat "^1.3.1"
     object.assign "^4.1.4"
     object.values "^1.1.6"
+
+kdbush@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/kdbush/-/kdbush-3.0.0.tgz#f8484794d47004cc2d85ed3a79353dbe0abc2bf0"
+  integrity sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==
 
 keyv@^4.5.3:
   version "4.5.4"
@@ -7110,6 +7137,11 @@ react-native-image-pan-zoom@^2.1.12:
   resolved "https://registry.npmmirror.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.12.tgz#eb98bf56fb5610379bdbfdb63219cc1baca98fd2"
   integrity sha512-BF66XeP6dzuANsPmmFsJshM2Jyh/Mo1t8FsGc1L9Q9/sVP8MJULDabB1hms+eAoqgtyhMr5BuXV3E1hJ5U5H6Q==
 
+react-native-image-picker@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.npmmirror.com/react-native-image-picker/-/react-native-image-picker-7.2.3.tgz#9c402591462af256cdd9aed796c28083a48f90cd"
+  integrity sha512-zKIZUlQNU3EtqizsXSH92zPeve4vpUrsqHu2kkpCxWE9TZhJFZBb+irDsBOY8J21k0+Edgt06TMQGJ+iPUIXyA==
+
 react-native-image-zoom-viewer@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmmirror.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-3.0.1.tgz#a2bd5fb3bda15e0686ce88fcde8576726495d7fb"
@@ -7166,10 +7198,10 @@ react-native-safe-area-context@^4.14.0:
   resolved "https://registry.npmmirror.com/react-native-safe-area-context/-/react-native-safe-area-context-4.14.1.tgz#980c3c9db02a2314fa8ceb07f614728802320367"
   integrity sha512-+tUhT5WBl8nh5+P+chYhAjR470iCByf9z5EYdCEbPaAK3Yfzw+o8VRPnUgmPAKlSccOgQBxx3NOl/Wzckn9ujg==
 
-react-native-screens@^4.3.0:
-  version "4.5.0"
-  resolved "https://registry.npmmirror.com/react-native-screens/-/react-native-screens-4.5.0.tgz#748d47ed68763ea28822a5ecf304dbef38a15652"
-  integrity sha512-yBWeN5EHNeew9f0ia9VE7JSlUQzCZEwkb87r7A7/Sg41OJHuRKHNRhmdCOiMBUqwwQi3F+b4NZGywjeM/gWMyg==
+react-native-screens@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.npmmirror.com/react-native-screens/-/react-native-screens-4.6.0.tgz#2b60ab6f4cd5010c6f9cb01b034f2aa0e17ccf4b"
+  integrity sha512-PqGtR/moJLiTMSavhfo5spKXNHZrlxffq3g5UUVPmyuu7MmazFlPvYqiAYnR2iB9tkJYgvZO6sbjYAE7619M0A==
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
@@ -8205,6 +8237,13 @@ superagent@^8.0.0:
     mime "2.6.0"
     qs "^6.11.0"
     semver "^7.3.8"
+
+supercluster@^7.1.4:
+  version "7.1.5"
+  resolved "https://registry.npmmirror.com/supercluster/-/supercluster-7.1.5.tgz#65a6ce4a037a972767740614c19051b64b8be5a3"
+  integrity sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg==
+  dependencies:
+    kdbush "^3.0.0"
 
 supports-color@^7.1.0:
   version "7.2.0"

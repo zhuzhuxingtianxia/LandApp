@@ -1,0 +1,10 @@
+#import <React/RCTUIManager.h>
+#import <React/RCTImageLoader.h>
+#import <React/RCTResizeMode.h>
+//#import <MAMapKit/MAMapKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <AMapNaviKit/AMapNaviKit.h>
+#import <AMapNaviKit/AMapNaviCommonObj.h>
+#import <AMapNaviKit/MAMapKit.h>

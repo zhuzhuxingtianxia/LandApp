@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+def getExt(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+buildscript {
+    ext.kotlin_version = '1.5.31'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+android {
+    compileSdkVersion getExt('compileSdkVersion', 30)
+    buildToolsVersion getExt('buildToolsVersion', '30.0.2')
+
+    defaultConfig {
+        minSdkVersion getExt('minSdkVersion', 21)
+        targetSdkVersion getExt('targetSdkVersion', 30)
+    }
+
+    // compileOptions {
+    //     sourceCompatibility JavaVersion.VERSION_17
+    //     targetCompatibility JavaVersion.VERSION_17
+    // }
+
+    // kotlinOptions {
+    //     jvmTarget = '17'
+    // }
+}
+
+dependencies {
+    api 'com.facebook.react:react-native:+'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.amap.api:navi-3dmap-location-search:10.0.800_3dmap10.0.800_loc6.4.5_sea9.7.2'
+    // implementation 'com.amap.api:3dmap:9.6.0'
+    // implementation 'com.amap.api:search:latest.integration'
+    // implementation 'com.amap.api:location:latest.integration'
+    implementation 'com.google.code.gson:gson:2.8.9'
+}

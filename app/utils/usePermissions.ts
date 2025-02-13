@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { request, check, PERMISSIONS, RESULTS } from 'react-native-permissions';
+import { request, check, PERMISSIONS, RESULTS, checkNotifications, requestNotifications } from 'react-native-permissions';
 import { Platform } from 'react-native';
 
 type RequestType = 'request' | 'check' | undefined
@@ -85,21 +85,14 @@ const usePermissions = () => {
   };
 
   const checkAndRequestNotificationPermission = async (method:RequestType = 'request') => {
-    const permission = Platform.select({
-      ios: PERMISSIONS.IOS.NOTIFICATIONS,
-      android: PERMISSIONS.ANDROID.POST_NOTIFICATIONS,
-    });
-
-    if (permission) {
-      let result;
-      if (method === 'check') {
-        result = await check(permission);
-      } else {
-        result = await request(permission);
-      }
-      setHasNotificationPermission(result === RESULTS.GRANTED);
-      return result === RESULTS.GRANTED;
+    let result;
+    if (method === 'check') {
+      result = await checkNotifications();
+    } else {
+      result = await requestNotifications();
     }
+    setHasNotificationPermission(result.status === RESULTS.GRANTED);
+    return result.status === RESULTS.GRANTED;
   };
 
   const checkAndRequestCalendarPermission = async (method:RequestType = 'request') => {
