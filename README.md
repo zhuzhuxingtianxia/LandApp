@@ -71,6 +71,8 @@ yarn add @shopify/react-native-skia
 * react-native-chart-kit: 图表库，3年未更新
 * clchart: 股票图表库，6年未更新
 * @react-native-seoul/masonry-list: 瀑布流
+* @shopify/flash-list: 强大的瀑布流
+* @gorhom/bottom-sheet: 底部下拉框类似高德地图首页
 * crypto-js 和 jsencrypt: 加密解密库
 * @sdcx/keyboard-insets: 键盘处理库
 * react-native-update: 热更库, [收费](https://pushy.reactnative.cn/docs/getting-started)
