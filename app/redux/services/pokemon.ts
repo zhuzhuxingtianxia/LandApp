@@ -1,9 +1,9 @@
-import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from "@/config/host";
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
+import { BASE_URL } from '@/config/host';
 
 const fetchFn = async (request: string | URL | Request, config: RequestInit | undefined) => {
   const response = await fetch(request, config);
-  
+
   if(__DEV__) {
     const res = response.clone();
     const json = await res.json();
@@ -11,13 +11,13 @@ const fetchFn = async (request: string | URL | Request, config: RequestInit | un
     console.log('Method:', (request as Request).method);
     console.log('response:', json);
   }
-  
+
   if (response.ok) {
     return response;
   } else {
-    throw new Error(response.statusText)
+    throw new Error(response.statusText);
   }
-}
+};
 
 const baseServiceQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -33,18 +33,18 @@ const baseServiceQuery = fetchBaseQuery({
     const { auth } = getState() as any;
     if (auth && auth.token) {
       if (!headers.has('authorization')) {
-        headers.set('authorization', `Bearer ${auth.token}`)
+        headers.set('authorization', `Bearer ${auth.token}`);
       }
     }
-    return headers
+    return headers;
   },
   // responseHandler: async (res) => {
   //   // 如果此处与query下都实现responseHandler，则query下的responseHandler优先级更高
   //   const result = await res.json();
   //   return result;
   // }
-  fetchFn: fetchFn
-})
+  fetchFn: fetchFn,
+});
 
 
 const baseServiceQueryRetry = retry(baseServiceQuery, { maxRetries: 3 });
@@ -104,32 +104,32 @@ export const pokemonApi = createApi({
       }),
       invalidatesTags: (result, error, arg, meta)=> {
         if (error) {
-          return []
+          return [];
         }
-        return [{ type: 'Pokemon' }]
+        return [{ type: 'Pokemon' }];
       },
     }),
     uploadFile: builder.mutation<{ url: string }, { file: File }>({
       query: ({file}) => {
-        const formData = new FormData()
-        formData.append('file', file)
+        const formData = new FormData();
+        formData.append('file', file);
         return {
           url: '/common/upload',
           method: 'POST',
           body: formData,
-        }
-      }
-    })
+        };
+      },
+    }),
   }),
-})
+});
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { 
-  useGetAppConfigQuery, 
+export const {
+  useGetAppConfigQuery,
   useAddAppConfigMutation,
-  useUploadFileMutation
-} = pokemonApi
+  useUploadFileMutation,
+} = pokemonApi;
 
 /*
   import { skipToken } from '@reduxjs/toolkit/query/react';

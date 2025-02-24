@@ -17,6 +17,7 @@ npx pod-install ios
 * react-native-webview: webView组件, 13.12.4版本有bug
 * @react-native-community/blur: 模糊
 * @reduxjs/toolkit: 状态管理及请求管理
+* redux-persist: 状态持久化库
 * react-native-permissions: 权限管理库
 * react-native-safe-area-context: 安全区域库
 * @ant-design/react-native: 组件库
