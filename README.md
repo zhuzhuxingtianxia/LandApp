@@ -28,7 +28,7 @@ npx pod-install ios
 * react-native-video: 视频播放器库
 * react-native-video-controls: 视频播放器控制库
 * react-native-image-picker 或 react-native-image-crop-picker: 图库选择器，需要相机、相册、麦克风权限
-* react-native-vision-camera或react-native-camera: 相机库
+* react-native-vision-camera或react-native-camera: 相机库，可自定义相机
 * @react-native-camera-roll/camera-roll: 保存图片到相册，获取相册图片
 * react-native-image-zoom-viewer: 图片预览，5年没维护了
 * react-native-image-pan-zoom: 图片预览,存档。5年没维护了
@@ -49,13 +49,13 @@ yarn add react-native-pdf react-native-blob-util
 ```
 * react-native-shadow-2: 阴影，rn0.76开始支持阴影功能。
 * react-native-view-shot: 视图转图片
+* react-native-image-marker: 图片加水印
 * react-native-reanimated/lottie-react-native: 动画库
 * react-native-device-info: 获取设备及应用信息
 * dayjs/moment: 日期格式化库
 * react-native-live-audio-stream: 实时音频流录制
 * react-native-audio-recorder-player: 录音播放
 * react-native-fs: 文件操作库
-* 
 * victory-native: 图表库（推荐）
 ```
 // 配置react-native-reanimated
