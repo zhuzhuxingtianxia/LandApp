@@ -1,7 +1,7 @@
 # LandApp
 react-native0.76.0
 
-## 使用的库
+## 常用库
 
 * @react-navigation/native
 ```
