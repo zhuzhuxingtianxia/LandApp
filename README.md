@@ -56,6 +56,7 @@ yarn add react-native-pdf react-native-blob-util
 * react-native-live-audio-stream: 实时音频流录制
 * react-native-audio-recorder-player: 录音播放
 * react-native-fs: 文件操作库
+* react-native-blob-util:  网络请求库，包含fs文件操作.rn-fetch-blob已废弃且上传文件android存在问题
 * victory-native: 图表库（推荐）
 ```
 // 配置react-native-reanimated
