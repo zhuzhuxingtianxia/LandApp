@@ -1,0 +1,28 @@
+{
+  "name": "react-native-my-view",
+  "version": "0.0.0",
+  "description": "自定义view组件",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "MyViewSpec",
+    "type": "components",
+    "jsSrcsDir": "src/fabric",
+    "android": {
+       "javaPackageName": "com.myview"
+     }
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "devDependencies": {
+    "@react-native/babel-preset": "0.79.2",
+    "@types/react": "^19.0.0",
+    "react": "19.0.0",
+    "react-native": "0.79.2"
+  },
+  "create-react-native-library": {
+    "languages": "kotlin-objc",
+    "type": "fabric-view",
+    "version": "0.52.1"
+  }
+}
