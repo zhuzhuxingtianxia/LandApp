@@ -1,5 +1,5 @@
 # LandApp
-react-native0.76.0
+react-native0.76.5
 
 ## 常用库
 
@@ -39,6 +39,8 @@ npx pod-install ios
 * react-native-qrcode-svg: 二维码
 * @xlbjs/react-native-amap3d: 高德导航、定位、追踪、搜索(导航包含3d地图)
 * react-native-amap3d-navi: 高德导航、定位(导航包含3d地图)
+* react-native-amap3d: 高德地图、定位、追踪、搜索
+* react-native-maps: Goole地图
 ```
 yarn add react-native-svg react-native-qrcode-svg
 ```
