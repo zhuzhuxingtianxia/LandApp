@@ -8,6 +8,7 @@ RCT_EXPORT_VIEW_PROPERTY(initialCameraPosition, NSDictionary)
 RCT_EXPORT_VIEW_PROPERTY(distanceFilter, double)
 RCT_EXPORT_VIEW_PROPERTY(headingFilter, double)
 RCT_EXPORT_VIEW_PROPERTY(hideLogo, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(customStyleOptions, NSDictionary)
 
 RCT_REMAP_VIEW_PROPERTY(myLocationEnabled, showsUserLocation, BOOL)
 RCT_REMAP_VIEW_PROPERTY(buildingsEnabled, showsBuildings, BOOL)

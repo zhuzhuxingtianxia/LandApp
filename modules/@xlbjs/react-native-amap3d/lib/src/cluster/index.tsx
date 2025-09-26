@@ -34,7 +34,7 @@ interface ClusterPoint {
   properties?: any;
 }
 
-interface Props {
+export interface ClusterProps {
   /**
    * 聚合半径
    */
@@ -58,7 +58,7 @@ interface Props {
   /**
    * 渲染 Marker
    */
-  renderMarker: (item: ClusterPoint) => React.ReactNode;
+  renderMarker?: (item: ClusterPoint) => React.ReactNode;
 
   /**
    * 渲染聚合点
@@ -71,89 +71,101 @@ interface Props {
   onPress?: (params: ClusterParams) => void;
 }
 
-interface State {
-  clusters: ClusterFeature<ClusterProperties>[];
+export interface ClusterRef {
+  update: (status: CameraEvent) => void;
 }
 
-export default class Cluster extends React.PureComponent<Props, State> {
-  static defaultProps = { radius: 200 };
-  state: State = { clusters: [] };
-  status?: CameraEvent;
-  cluster?: Supercluster<any, ClusterProperties>;
+const defaultProps = { radius: 200 };
 
-  componentDidMount() {
-    this.init();
-  }
+const Cluster = React.forwardRef((prop: ClusterProps, ref: React.Ref<ClusterRef>) => {
+  const props = { ...defaultProps, ...prop };
+  const [clusters, setClusters] = React.useState<ClusterFeature<ClusterProperties>>([]);
+  const statusRef = React.useRef<CameraEvent>();
+  const clusterRef = React.useRef<Supercluster<any, ClusterProperties>>();
 
-  componentDidUpdate(props: Props) {
-    if (props.points != this.props.points) {
-      this.init();
+  React.useEffect(() => {
+    init();
+    return () => {
+      clusterRef.current = null;
     }
-  }
+  },[props.points]);
 
-  async init() {
-    const { radius, points } = this.props;
+  React.useImperativeHandle(ref, () => ({
+    update,
+  }))
+
+  const init = async () => {
+    const { radius, points } = props;
     // 如果主线程占用太多计算资源，会导致 ios onLoad 事件无法触发，非常蛋疼
     // 暂时想到的解决办法是等一个事件循环
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const options = { radius, minZoom: 3, maxZoom: 21 };
-    this.cluster = new Supercluster<any, ClusterProperties>(options).load(
-      points.map((marker) => ({
+    const options = { radius, minZoom: 3, maxZoom: 19 };
+    const mypoints = points.map((marker) => ({
         type: "Feature",
         geometry: {
           type: "Point",
           coordinates: [marker.position.longitude, marker.position.latitude],
         },
         properties: marker.properties,
-      }))
-    );
-    if (this.status) {
-      this.update(this.status);
+      }));
+    clusterRef.current = new Supercluster<any, ClusterProperties>(options).load(mypoints);
+    if (statusRef.current) {
+      update(statusRef.current);
     }
   }
 
   /**
    * 需要在 MapView.onCameraIdle({ nativeEvent }) 回调里调用，参数为 nativeEvent
    */
-  async update(status: CameraEvent) {
-    this.status = status;
+  const update = async (status: CameraEvent) => {
+    statusRef.current = status;
     await new Promise((resolve) => setTimeout(resolve, 0));
     const { cameraPosition, latLngBounds } = status;
     const { southwest, northeast } = latLngBounds;
-    const clusters = this.cluster!.getClusters(
+    const clusters = clusterRef.current!.getClusters(
       [southwest.longitude, southwest.latitude, northeast.longitude, northeast.latitude],
       Math.round(cameraPosition.zoom!)
     );
-    this.setState({ clusters });
+    setClusters(clusters);
   }
 
-  renderCluster = (cluster: ClusterParams) => {
+  const renderCluster = (cluster: ClusterParams) => {
     return (
       <ClusterView
         key={cluster.id}
         cluster={cluster}
-        onPress={this.props.onPress}
-        style={this.props.clusterStyle}
-        textStyle={this.props.clusterTextStyle}
+        onPress={props.onPress}
+        style={props.clusterStyle}
+        textStyle={props.clusterTextStyle}
       />
     );
   };
 
-  render() {
-    const { renderCluster, renderMarker } = this.props;
-    const render = renderCluster || this.renderCluster;
-    return this.state.clusters.map(({ geometry, properties }) => {
+  const views = React.useMemo(()=>{
+    const _render = props.renderCluster || renderCluster;
+    const views = clusters.map(({ geometry, properties }: ClusterFeature<ClusterProperties>, i: number) => {
       const position = {
         latitude: geometry.coordinates[1],
         longitude: geometry.coordinates[0],
       };
-
       if (properties.point_count > 0) {
         const { cluster_id, point_count } = properties;
-        return render({ position, id: cluster_id, count: point_count });
+        return <React.Fragment key={`marker-${i}`}>
+          {_render({ position, id: cluster_id, count: point_count }) as any}
+        </React.Fragment>
       }
-
-      return renderMarker({ position, properties });
+      return (
+        <React.Fragment key={`marker-${i}`}>
+          {props.renderMarker?.({ position, properties })}
+        </React.Fragment>
+      );
     });
-  }
-}
+    return views;
+  },[clusters]);
+
+  return (
+    views
+  );
+});
+
+export default Cluster;

@@ -5,11 +5,11 @@ import type {
   NativeSyntheticEvent,
   ViewProps } from 'react-native';
 import {
+  Image,
   requireNativeComponent,
 } from 'react-native';
 import Component from './component';
-import type { CameraPosition, LatLng, LatLngBounds, MapPoi, MapType, Point } from './types';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import type { CameraPosition, GeolocationPosition, MapCustomStyleOptions, LatLng, LatLngBounds, MapPoi, MapType, Point } from './types';
 
 export interface CameraEvent {
   cameraPosition: CameraPosition;
@@ -160,6 +160,11 @@ export interface MapViewProps extends ViewProps {
   hideLogo?: boolean;
 
   /**
+   * @description 自定义地图样式
+  */
+  customStyleOptions?: MapCustomStyleOptions;
+
+  /**
    * @description 是否开启呼吸动效， 如果配置了自定义定位图片的话不生效
    * @platform ios
    */
@@ -248,6 +253,20 @@ export default class extends Component<MapViewProps> {
   getLatLng(point: Point): Promise<LatLng> {
     return this.call('getLatLng', point);
   }
+  /**
+  * @description 标注刷新
+ */
+  reload(): Promise<void> {
+    try {
+      return new Promise((resolve)=>{
+        setTimeout(()=>{
+          this.call('reload', {}).then(resolve);
+        },300);
+      });
+    } catch (error) {
+      return Promise.resolve();
+    }
+  }
 
   callback = ({ nativeEvent }: NativeSyntheticEvent<{ id: number; data: any }>) => {
     this.callbackMap[nativeEvent.id]?.call(this, nativeEvent.data);
@@ -270,13 +289,24 @@ export default class extends Component<MapViewProps> {
   render() {
     let { style, onLoad } = this.props;
     if (!this.state.loaded) {
-      style = [style, { width: 1, height: 1 }];
+      style = [style, { width: 1, height: 1, justifyContent: 'center', alignItems: 'center' }];
+    }
+    const customStyleOptions: MapCustomStyleOptions = { ...this.props.customStyleOptions };
+    if (typeof this.props.customStyleOptions?.styleData === 'number') {
+      customStyleOptions.styleData = Image.resolveAssetSource(this.props.customStyleOptions.styleData);
+    }
+    if (typeof this.props.customStyleOptions?.styleExtraData === 'number') {
+      customStyleOptions.styleExtraData = Image.resolveAssetSource(this.props.customStyleOptions.styleExtraData);
+    }
+    if (typeof this.props.customStyleOptions?.styleTextureData === 'number') {
+      customStyleOptions.styleTextureData = Image.resolveAssetSource(this.props.customStyleOptions.styleTextureData);
     }
     return (
       <NativeMapViewOld
         {...this.props}
         ref={(ref) => (this.ref = ref)}
-        locationImage={resolveAssetSource(this.props?.locationImage)}
+        customStyleOptions={customStyleOptions}
+        locationImage={Image.resolveAssetSource(this.props?.locationImage ?? 0)}
         style={style}
         // @ts-ignore: 内部接口
         onCallback={this.callback}

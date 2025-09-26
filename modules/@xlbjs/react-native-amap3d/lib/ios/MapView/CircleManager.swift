@@ -1,3 +1,6 @@
+import AMapNaviKit
+import React
+
 @objc(AMapCircleManager)
 class AMapCircleManager: RCTViewManager {
   override class func requiresMainQueueSetup() -> Bool { false }

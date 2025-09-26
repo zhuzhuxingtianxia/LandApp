@@ -1,3 +1,6 @@
+import AMapNaviKit
+import React
+
 @objc(AMapMultiPointManager)
 class AMapMultiPointManager: RCTViewManager {
   override class func requiresMainQueueSetup() -> Bool { false }

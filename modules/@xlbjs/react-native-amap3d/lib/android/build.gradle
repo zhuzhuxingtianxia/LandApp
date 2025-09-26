@@ -1,44 +1,85 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+buildscript {
+  ext.getExtOrDefault = {name ->
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['Map_' + name]
+  }
 
-def getExt(prop, fallback) {
-    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+  repositories {
+    google()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:+"
+    // noinspection DifferentKotlinGradleVersion
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
+  }
+  
 }
 
-buildscript {
-    ext.kotlin_version = '1.5.31'
+def isNewArchitectureEnabled() {
+  return rootProject.hasProperty("newArchEnabled") &&  rootProject.getProperty("newArchEnabled") == "true"
+}
 
-    repositories {
-        mavenCentral()
-    }
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+if (isNewArchitectureEnabled()) {
+  apply plugin: 'com.facebook.react'
+}
+
+def getExtOrIntegerDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["Map_" + name]).toInteger()
 }
 
 android {
-    compileSdkVersion getExt('compileSdkVersion', 30)
-    buildToolsVersion getExt('buildToolsVersion', '30.0.2')
 
-    defaultConfig {
-        minSdkVersion getExt('minSdkVersion', 21)
-        targetSdkVersion getExt('targetSdkVersion', 30)
+  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
+
+  defaultConfig {
+    minSdkVersion getExtOrIntegerDefault("minSdkVersion")
+    targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+  }
+
+  buildFeatures {
+    buildConfig true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
     }
+  }
 
-    // compileOptions {
-    //     sourceCompatibility JavaVersion.VERSION_17
-    //     targetCompatibility JavaVersion.VERSION_17
-    // }
+  lintOptions {
+    disable "GradleCompatible"
+  }
 
-    // kotlinOptions {
-    //     jvmTarget = '17'
-    // }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  sourceSets {
+    main {
+      java.srcDirs += [
+        "generated/java",
+        "generated/jni"
+      ]
+    }
+  }
 }
 
+repositories {
+  mavenCentral()
+  google()
+}
+
+def kotlin_version = getExtOrDefault("kotlinVersion")
+
 dependencies {
-    api 'com.facebook.react:react-native:+'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.facebook.react:react-android"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     implementation 'com.amap.api:navi-3dmap-location-search:10.0.800_3dmap10.0.800_loc6.4.5_sea9.7.2'
     // implementation 'com.amap.api:3dmap:9.6.0'
     // implementation 'com.amap.api:search:latest.integration'

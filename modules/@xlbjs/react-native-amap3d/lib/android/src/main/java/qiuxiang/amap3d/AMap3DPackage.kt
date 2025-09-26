@@ -28,4 +28,5 @@ class AMap3DPackage : ReactPackage {
       MultiPointManager()
     )
   }
+
 }

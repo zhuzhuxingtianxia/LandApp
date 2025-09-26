@@ -6,19 +6,29 @@ import android.graphics.Canvas
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.annotation.Nullable
 import com.amap.api.maps.AMap
 import com.amap.api.maps.model.*
 import com.amap.api.maps.model.Marker
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.uimanager.UIManagerHelper
+import com.facebook.react.uimanager.events.Event
 import com.facebook.react.views.view.ReactViewGroup
 import qiuxiang.amap3d.fetchImage
 
-class Marker(context: Context) : ReactViewGroup(context), Overlay {
+class MarkerView(context: Context) : ReactViewGroup(context), Overlay {
   private var view: View? = null
   private var icon: BitmapDescriptor? = null
   private var anchorX: Float = 0.5f
   private var anchorY: Float = 1f
   var marker: Marker? = null
+
+  init {
+    this.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+  }
 
   var position: LatLng? = null
     set(value) {
@@ -72,7 +82,7 @@ class Marker(context: Context) : ReactViewGroup(context), Overlay {
     view = child
     view?.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> updateIcon() }
   }
-
+  
   fun setIcon(source: ReadableMap) {
     fetchImage(source) {
       icon = it
@@ -80,6 +90,43 @@ class Marker(context: Context) : ReactViewGroup(context), Overlay {
         marker?.setIcon(it)
       }
     }
+  }
+
+  fun receiveEvent(eventName: String, data: WritableMap? = null) {
+    val reactContext = context as ReactContext
+    val surfaceId = UIManagerHelper.getSurfaceId(reactContext)
+    val eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id)
+
+    if (eventName == "onPress") {
+      println("按钮被点击了")
+    } else if (eventName == "onDragStart") {
+      println("onDragStart")
+    }else if (eventName == "onDrag") {
+      println("onDrag")
+    }else if (eventName == "onDragEnd") {
+      println("onDragEnd")
+    }
+
+    val payload = Arguments.createMap()
+    if (data != null) {
+      payload.merge(data)
+    }
+
+    val event = ActionEvent(surfaceId, id, eventName, payload)
+
+    eventDispatcher?.dispatchEvent(event)
+
+  }
+
+  inner class ActionEvent(
+    surfaceId: Int,
+    viewId: Int,
+    private val eventName: String,
+    private val payload: WritableMap
+  ) : Event<ActionEvent>(surfaceId, viewId) {
+    override fun getEventName() = eventName
+
+    override fun getEventData() = payload
   }
 
   override fun add(map: AMap) {

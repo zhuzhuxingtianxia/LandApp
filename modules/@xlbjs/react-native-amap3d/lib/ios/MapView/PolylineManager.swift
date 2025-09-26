@@ -1,3 +1,6 @@
+import AMapNaviKit
+import React
+
 @objc(AMapPolylineManager)
 class AMapPolylineManager: RCTViewManager {
   override class func requiresMainQueueSetup() -> Bool { false }

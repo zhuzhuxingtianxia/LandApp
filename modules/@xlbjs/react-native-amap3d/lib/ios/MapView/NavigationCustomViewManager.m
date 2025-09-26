@@ -142,7 +142,28 @@ RCT_EXPORT_METHOD(AMapCoordinateConvert:(NSDictionary *)point  type:(NSUInteger)
 }
 
 
+/**
+ * @brief 两点间直线距离计算
+ * @param start  经纬度
+ * @param end 经纬度
+ * @return 结果米
+ */
 
+RCT_EXPORT_METHOD(calculateLineDistance:(NSDictionary *)start end:(NSDictionary *)end resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject){
+    CLLocationCoordinate2D start2D = CLLocationCoordinate2DMake([start[@"latitude"] doubleValue], [start[@"longitude"] doubleValue]);
+ 
+    
+    CLLocationCoordinate2D end2D = CLLocationCoordinate2DMake([end[@"latitude"] doubleValue], [end[@"longitude"] doubleValue]);
+ 
+    //1.将两个经纬度点转成投影点
+    MAMapPoint point1 = MAMapPointForCoordinate(start2D);
+    MAMapPoint point2 = MAMapPointForCoordinate(end2D);
+    //2.计算距离
+    CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
+    
+    resolve(@(distance));
+
+}
 
 
 #pragma mark - Life Cycle

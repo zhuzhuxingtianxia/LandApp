@@ -44,11 +44,7 @@ export function getVersion(): Promise<string> {
  * @param radius 圆的半径，单位米
  * @return 判断结果
  */
-export function MACircleContainsCoordinate(
-  point: LatLng,
-  center: LatLng,
-  radius: number
-): Promise<any> {
+export function MACircleContainsCoordinate(point: LatLng,center: LatLng, radius: number): Promise<any> {
   if (Platform.OS == "ios") {
     return NavigationCustomView?.MACircleContainsCoordinate(point, center, radius);
   } else {
@@ -71,7 +67,52 @@ export function MACircleContainsCoordinate(
  * @return 高德坐标
  */
 export function AMapCoordinateConvert(point: LatLng, type: number = 6): Promise<any> {
-  return NavigationCustomView?.AMapCoordinateConvert(point, type);
+  try {
+    if (Platform.OS == "ios") {
+      return NavigationCustomView?.AMapCoordinateConvert(point, type);
+    }else {
+      return AMapSdkJavaVersion?.AMapCoordinateConvert(point, type);
+    }
+  } catch (error) {
+    return Promise.reject(error);
+  }
+  
+}
+
+/**
+ * @description 两点间直线距离计算
+*/
+export function calculateLineDistance(start: LatLng, end: LatLng): Promise<number> {
+  try {
+    if (Platform.OS == "ios") {
+      return NavigationCustomView.calculateLineDistance(start, end);
+    } else {
+      return AMapSdkJavaVersion.calculateLineDistance(start, end);
+    }
+  } catch (error) {
+    return Promise.reject(error);
+  }
+  
+}
+
+/**
+ * @description 两点间面积计算
+ * @param leftTopLatlng 
+ * @param rightBottomLatlng 
+ * @returns 
+ */
+export function calculateArea(leftTopLatlng: LatLng, rightBottomLatlng: LatLng): Promise<number> {
+  return NavigationCustomView?.calculateArea(leftTopLatlng, rightBottomLatlng);
+}
+/**
+ * @description 用于路径规划距离测量
+ * @param latLonPoints 起点支持多个
+ * @param dest 终点
+ * @param type 0:直线距离 1:驾车距离
+*/
+export function distanceSearch(latLonPoints: LatLng[],dest: LatLng, type: number): Promise<number> {
+  return NavigationCustomView?.distanceSearch(latLonPoints, dest, type);
+  
 }
 
 /**

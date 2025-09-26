@@ -1,20 +1,24 @@
-import * as React from "react";
-import {
+import * as React from 'react';
+import type {
   ImageSourcePropType,
   NativeSyntheticEvent,
+  ViewStyle } from 'react-native';
+import {
   requireNativeComponent,
   View,
-  ViewStyle,
-} from "react-native";
+} from 'react-native';
 // @ts-ignore
-import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
-import Component from "./component";
-import { LatLng, Point } from "./types";
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import Component from './component';
+import type { LatLng, Point } from './types';
+import { MapMarker as NewMapMarker } from './fabric';
 
 export interface MarkerProps {
+  style?: ViewStyle;
   /**
    * 坐标
-   */ position: LatLng;
+   */
+  position: LatLng;
 
   /**
    * 图标
@@ -87,7 +91,9 @@ export interface MarkerProps {
   onDragEnd?: (event: NativeSyntheticEvent<LatLng>) => void;
 }
 
-export default class extends Component<MarkerProps> {
+const name = 'AMapMarker';
+const NativeMarker = requireNativeComponent<MarkerProps>(name);
+class OldMapMarker extends Component<MarkerProps> {
   name = name;
 
   /**
@@ -98,7 +104,7 @@ export default class extends Component<MarkerProps> {
    * icon 更新。
    */
   update = () => {
-    setTimeout(() => this.invoke("update"), 0);
+    setTimeout(() => this.invoke('update'), 0);
   };
 
   componentDidUpdate() {
@@ -110,7 +116,7 @@ export default class extends Component<MarkerProps> {
   render() {
     const props = { ...this.props };
     // @ts-ignore android 不能用 position 作为属性，会发生冲突
-    props.latLng = props.position
+    props.latLng = props.position;
     // @ts-ignore
     delete props.position;
     if (props.children) {
@@ -124,6 +130,8 @@ export default class extends Component<MarkerProps> {
   }
 }
 
-const name = "AMapMarker";
-const style: ViewStyle = { position: "absolute", zIndex: -1 };
-const NativeMarker = requireNativeComponent<MarkerProps>(name);
+const style: ViewStyle = { position: 'absolute', zIndex: -1 };
+
+const MapMarker = OldMapMarker;
+
+export default MapMarker;

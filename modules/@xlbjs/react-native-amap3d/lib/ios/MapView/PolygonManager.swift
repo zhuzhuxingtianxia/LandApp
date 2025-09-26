@@ -1,3 +1,6 @@
+import AMapNaviKit
+import React
+
 @objc(AMapPolygonManager)
 class AMapPolygonManager: RCTViewManager {
   override class func requiresMainQueueSetup() -> Bool { false }

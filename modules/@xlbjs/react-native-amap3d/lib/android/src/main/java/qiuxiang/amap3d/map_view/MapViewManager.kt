@@ -1,8 +1,11 @@
 package qiuxiang.amap3d.map_view
 
 import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.amap.api.maps.CameraUpdateFactory
+import com.amap.api.maps.model.CustomMapStyleOptions
 import com.amap.api.maps.model.MyLocationStyle
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
@@ -12,6 +15,7 @@ import com.facebook.react.uimanager.annotations.ReactProp
 import qiuxiang.amap3d.getEventTypeConstants
 import qiuxiang.amap3d.toLatLng
 import qiuxiang.amap3d.toPx
+import java.lang.ref.WeakReference
 
 @Suppress("unused")
 internal class MapViewManager : ViewGroupManager<MapView>() {
@@ -30,7 +34,11 @@ internal class MapViewManager : ViewGroupManager<MapView>() {
 
   override fun onDropViewInstance(view: MapView) {
     super.onDropViewInstance(view)
-    view.onDestroy()
+    //    view.onDestroy()
+    val weakView = WeakReference(view)
+    Handler(Looper.getMainLooper()).postDelayed({
+      weakView.get()?.onDestroy()
+    }, 300)
   }
 
   override fun getCommandsMap(): Map<String, Int> {
@@ -79,6 +87,11 @@ internal class MapViewManager : ViewGroupManager<MapView>() {
   fun setHideLogo(view: MapView, hide: Boolean) {
     val setting = view.map.uiSettings
     setting.setLogoBottomMargin(if (hide) -100 else 0)
+  }
+  // todo 自定义地图
+  @ReactProp(name = "customStyleOptions")
+  fun setCustomStyleOptions(view: MapView, options: ReadableMap?) {
+    options?.let { view.setCustomStyleOptions(options) }
   }
 
   // todo 精度圈是否开启

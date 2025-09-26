@@ -1,3 +1,6 @@
+import AMapNaviKit
+import React
+
 @objc(AMapHeatMapManager)
 class AMapHeatMapManager: RCTViewManager {
   override class func requiresMainQueueSetup() -> Bool { false }

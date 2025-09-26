@@ -76,6 +76,7 @@ class MapLocation(private val promise: Promise) : AMapLocationListener {
                     "locationType" to p0.locationType,
                     "latitude" to p0.latitude,
                     "longitude" to p0.longitude,
+                    "time" to p0.time,
                     "cood" to mapOf(
                         "latitude" to p0.latitude,
                         "longitude" to p0.longitude,
@@ -283,7 +284,7 @@ class SdkModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
             mLocationOption.isOnceLocation = true
             mLocationOption.isNeedAddress = hasReGeocode
             mLocationOption.isMockEnable = true
-            mLocationOption.isLocationCacheEnable = true
+            mLocationOption.isLocationCacheEnable = false
             if (locationClient != null) {
                 locationClient.setLocationOption(mLocationOption)
                 locationClient.stopLocation()

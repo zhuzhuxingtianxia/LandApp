@@ -1,3 +1,5 @@
+import { ImageRequireSource, ImageURISource } from "react-native";
+
 /**
  * 点坐标
  */
@@ -97,12 +99,12 @@ export interface CameraPosition {
   zoom?: number;
 
   /**
-   * 朝向、旋转角度
+   * 朝向、旋转角度[0-360]
    */
   bearing?: number;
 
   /**
-   * 倾斜角度
+   * 倾斜角度[0-45]
    */
   tilt?: number;
 }
@@ -130,6 +132,35 @@ export interface Location extends LatLng {
    * 运动速度
    */
   speed: number;
+}
+
+export interface GeolocationPosition {
+  coords: Location;
+  timestamp: number;
+}
+
+export type MapRequireSource = ImageRequireSource | ImageURISource;
+export interface MapCustomStyleOptions {
+  /**
+   * @description 自定义样式base64或二进制数据
+   */
+  styleData?: MapRequireSource;
+  /**
+   * @description 样式额外的配置，比如路况，背景颜色等, 数据类型base64或二进制数据
+   */
+  styleExtraData?: MapRequireSource;
+  /**
+   * @description 纹理，需付费
+  */
+  styleTextureData?: MapRequireSource;
+  /**
+   * @description 设置地图自定义样式对应的styleID，从官网获取
+   */
+  styleId?: string;
+  /**
+   * @description 海外自定义样式文件路径
+   */
+  styleDataOverseaPath?: string;
 }
 
 /**

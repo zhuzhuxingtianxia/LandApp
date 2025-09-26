@@ -1,4 +1,9 @@
 import CoreLocation
+import AMapSearchKit
+import AMapLocationKit
+import AMapNaviKit
+import React
+
 @objc(AMapSdk)
 class AMapSdk: NSObject {
     lazy private var locationManager = {
@@ -21,6 +26,8 @@ class AMapSdk: NSObject {
     
     private var localPromiseResolve: RCTPromiseResolveBlock?
     private var localPromiseReject: RCTPromiseRejectBlock?
+    private var promiseResolveDict: [String: RCTPromiseResolveBlock] = [:]
+    private var promiseRejectDict: [String: RCTPromiseRejectBlock] = [:]
    
     @objc static func requiresMainQueueSetup() -> Bool {
         return false
@@ -44,10 +51,14 @@ class AMapSdk: NSObject {
         self.localPromiseReject = reject;
         
         if CLLocationManager.locationServicesEnabled() {
-            if(sysLocationManager.authorizationStatus == .authorizedWhenInUse) {
-                sysLocationManager.startUpdatingLocation()
-            }else {
-                sysLocationManager.requestWhenInUseAuthorization()
+            if #available(iOS 14.0, *) {
+                if(sysLocationManager.authorizationStatus == .authorizedWhenInUse) {
+                    sysLocationManager.startUpdatingLocation()
+                }else {
+                    sysLocationManager.requestWhenInUseAuthorization()
+                }
+            } else {
+                // Fallback on earlier versions
             }
             
             isResolved = false
@@ -65,7 +76,7 @@ class AMapSdk: NSObject {
         locationManager.requestLocation(withReGeocode: hasReGeocode, completionBlock: { [self]
             location, regeocode, error -> Void in
             if error != nil {
-                reject("-1", "request location failed", error)
+                reject("-1", error?.localizedDescription ?? "request location failed", error)
                 return
             }
             print("formate->regionCode:\(regeocode as Any)")
@@ -91,8 +102,6 @@ class AMapSdk: NSObject {
     
     // 逆地理编码
     @objc func reverseGeocode(_ point: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-        self.localPromiseResolve = resolve;
-        self.localPromiseReject = reject;
 
         let request = AMapReGeocodeSearchRequest()
         guard let latitude = point["latitude"] as? CLLocationDegrees,
@@ -103,6 +112,9 @@ class AMapSdk: NSObject {
 
         // 设置经纬度
         request.location = AMapGeoPoint.location(withLatitude: latitude, longitude: longitude)
+        
+        self.promiseResolveDict[request.description] = resolve
+        self.promiseRejectDict[request.description] = reject
         
         // 执行逆地理编码
         self.search?.aMapReGoecodeSearch(request)
@@ -173,8 +185,11 @@ extension AMapSdk: AMapSearchDelegate {
     
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
        print("onReGeocodeSearchDone is start")
+        var resolve = self.promiseResolveDict[request.description]
+        var reject = self.promiseRejectDict[request.description]
+        
         guard let regeocode = response.regeocode else {
-            localPromiseReject?("-1", "regeocode failed ", ComplexError(code: -1, message: "regeocode failed "))
+            reject?("-1", "regeocode failed ", ComplexError(code: -1, message: "regeocode failed "))
             return;
         }
         let codebleRegeocode = CodableRegeocode(regeocode)
@@ -184,10 +199,10 @@ extension AMapSdk: AMapSearchDelegate {
             let encodeData = try JSONSerialization.data(withJSONObject: try JSONSerialization.jsonObject(with: try encoder.encode(codebleRegeocode), options: []), options: .prettyPrinted)
             
             if let jsonStr = String(data: encodeData , encoding: .utf8) {
-                localPromiseResolve?(jsonStr)
+                resolve?(jsonStr)
             }
         } catch  {
-            localPromiseReject?("-1", "json failed ", error)
+            reject?("-1", "json failed ", error)
         }
    }
 
@@ -266,8 +281,12 @@ extension AMapSdk: AMapSearchDelegate {
 // MARK: - CLLocationManagerDelegate Methods
 extension AMapSdk: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if sysLocationManager.authorizationStatus == .authorizedAlways || sysLocationManager.authorizationStatus == .authorizedWhenInUse {
-            sysLocationManager.startUpdatingLocation()
+        if #available(iOS 14.0, *) {
+            if sysLocationManager.authorizationStatus == .authorizedAlways || sysLocationManager.authorizationStatus == .authorizedWhenInUse {
+                sysLocationManager.startUpdatingLocation()
+            }
+        } else {
+            // Fallback on earlier versions
         }
         
     }

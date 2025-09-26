@@ -1,6 +1,6 @@
 {
   "name": "@xlbjs/react-native-amap3d",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "react-native 高德地图组件，支持 Android + iOS",
   "author": "7c00 <i@7c00.cc>",
   "license": "MIT",
@@ -19,6 +19,18 @@
     "react-native.config.js",
     "react-native-amap3d.podspec"
   ],
+  "xcodegenConfig": {
+    "name": "AMapSpec",
+    "type": "components",
+    "jsSrcsDir": "lib/src/fabric",
+    "ios": {
+       "name": "AMapSpec"
+    },
+    "android": {
+      "javaPackageName": "qiuxiang.amap3d",
+      "name": "XlbjsReactNativeAmap3d"
+    }
+  },
   "homepage": "https://github.com/qiuxiang/react-native-amap3d",
   "repository": {
     "type": "git",

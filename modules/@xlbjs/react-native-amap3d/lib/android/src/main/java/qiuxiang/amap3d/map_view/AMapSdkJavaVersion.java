@@ -13,6 +13,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMapException;
 import com.amap.api.maps.AMapUtils;
+import com.amap.api.maps.CoordinateConverter;
 import com.amap.api.maps.MapsInitializer;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Poi;
@@ -22,6 +23,7 @@ import com.amap.api.navi.AmapNaviParams;
 import com.amap.api.navi.AmapNaviType;
 import com.amap.api.navi.AmapPageType;
 import com.amap.api.navi.enums.NaviType;
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -29,6 +31,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableNativeMap;
+import com.facebook.react.bridge.WritableMap;
 
 import java.util.HashMap;
 
@@ -66,13 +69,57 @@ public class AMapSdkJavaVersion extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void AMapCoordinateConvert(ReadableMap point, Integer type, Promise promise) {
+        CoordinateConverter converter  = new CoordinateConverter(reactContext2);
+        // CoordType.GPS 待转换坐标类型
+        CoordinateConverter.CoordType coordType = CoordinateConverter.CoordType.GPS;
+        if(type == 0) {
+            coordType = CoordinateConverter.CoordType.BAIDU;
+        }else if(type == 1) {
+            coordType = CoordinateConverter.CoordType.MAPBAR;
+        }else if(type == 2) {
+            coordType = CoordinateConverter.CoordType.MAPABC;
+        }else if(type == 3) {
+            coordType = CoordinateConverter.CoordType.SOSOMAP;
+        }else if(type == 4) {
+            coordType = CoordinateConverter.CoordType.ALIYUN;
+        }else if(type == 5) {
+            coordType = CoordinateConverter.CoordType.GOOGLE;
+        }
+        converter.from(coordType);
+        // sourceLatLng待转换坐标点 LatLng类型
+        LatLng pointData = new LatLng((Double) point.getDouble("latitude"), (Double) point.getDouble("longitude"));
+        converter.coord(pointData);
+        // 执行转换操作
+        LatLng desLatLng = converter.convert();
+        WritableMap event = Arguments.createMap();
+        event.putDouble("latitude", desLatLng.latitude);
+        event.putDouble("longitude", desLatLng.longitude);
+        promise.resolve(event);
+    }
+    @ReactMethod
     public void circleContainsCoordinate(ReadableMap point, ReadableMap center, int radius, Promise promise) {
-        if (point == null || center == null)
+        if (point == null || center == null) {
+            promise.resolve(false);
             return;
+        }
         LatLng pointData = new LatLng((Double) point.getDouble("latitude"), (Double) point.getDouble("longitude"));
         LatLng centerData = new LatLng((Double) center.getDouble("latitude"), (Double) center.getDouble("longitude"));
         float distance = AMapUtils.calculateLineDistance(pointData, centerData);
         promise.resolve(radius > distance);
+    }
+
+    // 两点间直线距离计算
+    @ReactMethod
+    public void calculateLineDistance(ReadableMap start, ReadableMap end, Promise promise) {
+        if (start == null || end == null) {
+            promise.reject("参数有误");
+            return;
+        }
+        LatLng pointData = new LatLng((Double) start.getDouble("latitude"), (Double) start.getDouble("longitude"));
+        LatLng centerData = new LatLng((Double) end.getDouble("latitude"), (Double) end.getDouble("longitude"));
+        float distance = AMapUtils.calculateLineDistance(pointData, centerData);
+        promise.resolve(distance);
     }
 
     @ReactMethod

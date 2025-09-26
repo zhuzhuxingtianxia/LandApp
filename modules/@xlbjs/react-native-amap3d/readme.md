@@ -2,6 +2,10 @@
 
 **注意：该项目处于消极维护状态，随缘更新。**
 
+- 原项目地址：[react-native-amap3d](https://github.com/qiuxiang/react-native-amap3d)
+- 新项目地址：`react-native-amap3d-navi`
+- 目前使用项目：`@xlbjx/react-native-amap3d`
+
 react-native 高德地图组件，使用最新 3D SDK，支持 Android + iOS，受 [react-native-maps](https://github.com/airbnb/react-native-maps) 启发，提供功能丰富且易用的接口。
 
 相关项目推荐：
@@ -192,3 +196,8 @@ npm run ios
 
 [npm]: https://www.npmjs.com/package/react-native-amap3d
 [version-badge]: https://img.shields.io/npm/v/react-native-amap3d.svg
+
+## 自定义地图样式
+[自定义地图](https://lbs.amap.com/api/ios-sdk/guide/create-map/custom)需扩展iOS和Android原生代码。注意：纹理功能需要开通相关权限才可使用。
+在线自定义样式也需要开通相关权限才可使用。
+可使用加载离线数据，`MAMapCustomStyleOptions`支持`styleExtraData`和`styleData`,分别对应下载的数据包`style_extra.data`和`style.data`
