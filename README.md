@@ -88,6 +88,7 @@ yarn add @shopify/react-native-skia
 * react-native-pull: 下拉刷新组件，不涉及原生。适合[自定义二次开发](https://www.showapi.com/news/article/66f8d3ed4ddd79f11a211f2e) 
 * react-native-calendar-reminders: 事件添加提醒事项仅iOS可用
 * react-native-calendar-events: 事件添加到日历，iOS和Android都可用
+* @react-native-voice/voice: 语音识别库，直接使用master分支
 
 
 ## 配置别名
