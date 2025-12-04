@@ -50,8 +50,11 @@ yarn add react-native-svg react-native-qrcode-svg
 yarn add react-native-pdf react-native-blob-util
 ```
 * react-native-shadow-2: 阴影，rn0.76开始支持阴影功能。
-* react-native-view-shot: 视图转图片
+* react-native-view-shot: 视图转图片, 截图等
 * react-native-image-marker: 图片加水印
+* react-native-record-screen: 录屏库
+* react-native-capture-protection: 禁止录屏截屏库
+* react-native-screenguard: 禁止录屏截屏库
 * react-native-reanimated/lottie-react-native: 动画库
 * react-native-device-info: 获取设备及应用信息
 * dayjs/moment: 日期格式化库
@@ -89,6 +92,7 @@ yarn add @shopify/react-native-skia
 * react-native-calendar-reminders: 事件添加提醒事项仅iOS可用
 * react-native-calendar-events: 事件添加到日历，iOS和Android都可用
 * @react-native-voice/voice: 语音识别库，直接使用master分支
+* react-native-biometrics: 生物识别解锁，TouchID、FaceID、安卓指纹
 
 
 ## 配置别名
