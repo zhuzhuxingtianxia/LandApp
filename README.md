@@ -55,6 +55,7 @@ yarn add react-native-pdf react-native-blob-util
 * react-native-record-screen: 录屏库
 * react-native-capture-protection: 禁止录屏截屏库
 * react-native-screenguard: 禁止录屏截屏库
+* react-native-screenshot-prevent: 禁止录屏截屏库,较旧但简单可参考
 * react-native-reanimated/lottie-react-native: 动画库
 * react-native-device-info: 获取设备及应用信息
 * dayjs/moment: 日期格式化库
