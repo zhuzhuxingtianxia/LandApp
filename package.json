@@ -9,6 +9,9 @@
     "start": "react-native start",
     "patch": "node patch/index.js",
     "postinstall": "yarn patch",
+    "code-push": "sh ./scripts/code-push.sh dev",
+    "code-push-uat": "sh ./scripts/code-push.sh uat",
+    "code-push-prd": "sh ./scripts/code-push-prd.sh prd",
     "test": "jest"
   },
   "dependencies": {
