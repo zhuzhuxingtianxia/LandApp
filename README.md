@@ -21,6 +21,7 @@ npx pod-install ios
 * react-native-permissions: 权限管理库
 * react-native-safe-area-context: 安全区域库
 * @ant-design/react-native: 组件库
+* react-native-ui-lib: ui库
 * react-native-social: react-native-umeng 需支持推送，数据分析，分享，支付
 * react-native-linear-gradient: 渐变库
 * @react-native-masked-view/masked-view: 遮罩库
