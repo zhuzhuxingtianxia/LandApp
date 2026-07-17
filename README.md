@@ -95,6 +95,7 @@ yarn add @shopify/react-native-skia
 * react-native-calendar-events: 事件添加到日历，iOS和Android都可用
 * @react-native-voice/voice: 语音识别库，直接使用master分支
 * react-native-biometrics: 生物识别解锁，TouchID、FaceID、安卓指纹
+* @react-native-documents/picker: 文件选择
 
 
 ## 配置别名
