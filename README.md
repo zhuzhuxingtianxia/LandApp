@@ -29,7 +29,7 @@ npx pod-install ios
 * react-native-video: 视频播放器库
 * react-native-video-controls: 视频播放器控制库
 * react-native-image-picker 或 react-native-image-crop-picker: 图库选择器，需要相机、相册、麦克风权限
-* react-native-vision-camera或react-native-camera: 相机库，可自定义相机
+* react-native-vision-camera或react-native-camera: 相机库，可自定义相机, 可二维码扫描, 5.x版本还支持 图片二维码识别
 * @react-native-camera-roll/camera-roll: 保存图片到相册，获取相册图片
 * react-native-image-zoom-viewer: 图片预览，5年没维护了
 * react-native-image-pan-zoom: 图片预览,存档。5年没维护了
@@ -38,7 +38,7 @@ npx pod-install ios
 * react-native-swiper/react-native-snap-carousel: 轮播图, 5年没更新(可使用antd)
 * @react-native-community/slider：滑块(可使用antd)
 * react-native-qrcode-svg: 二维码生成
-* rn-qr-generator: 识别图片二维码和生成二维码
+* @pushpendersingh/react-native-scanner: 扫描二维码和识别图片二维码
 * @xlbjs/react-native-amap3d: 高德导航、定位、追踪、搜索(导航包含3d地图)
 * react-native-amap3d-navi: 高德导航、定位(导航包含3d地图)
 * react-native-amap3d: 高德地图、定位、追踪、搜索
