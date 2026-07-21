@@ -38,7 +38,7 @@ npx pod-install ios
 * react-native-swiper/react-native-snap-carousel: 轮播图, 5年没更新(可使用antd)
 * @react-native-community/slider：滑块(可使用antd)
 * react-native-qrcode-svg: 二维码生成
-* @pushpendersingh/react-native-scanner: 扫描二维码和识别图片二维码
+* @pushpendersingh/react-native-scanner: 扫描二维码和识别图片二维码。rn0.85后也可用`react-native-vision-camera`的子包`react-native-vision-camera-barcode-scanner`替代
 * @xlbjs/react-native-amap3d: 高德导航、定位、追踪、搜索(导航包含3d地图)
 * react-native-amap3d-navi: 高德导航、定位(导航包含3d地图)
 * react-native-amap3d: 高德地图、定位、追踪、搜索
