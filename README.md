@@ -99,7 +99,7 @@ yarn add @shopify/react-native-skia
 * @react-native-voice/voice: 语音识别库，直接使用master分支
 * react-native-biometrics: 生物识别解锁，TouchID、FaceID、安卓指纹
 * @react-native-documents/picker: 文件选择
-
+* react-native-purchases: RN应用内购买和订阅库
 
 ## 配置别名
 ```
