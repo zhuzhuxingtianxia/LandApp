@@ -77,8 +77,8 @@ yarn add @wuba/react-native-echarts echarts
 yarn add react-native-reanimated
 yarn add @shopify/react-native-skia
 ```
-* react-native-gifted-charts: 图表库
 * react-native-charts-wrapper: 基于原生`MPAndroidChart` 和`Charts`的RN图表库
+* react-native-gifted-charts: 图表库，基于svg性能有限，不适用于大数量
 * react-native-svg-charts: 图表库，5年未更新
 * react-native-chart-kit: 图表库，3年未更新
 * clchart: 股票图表库，6年未更新
