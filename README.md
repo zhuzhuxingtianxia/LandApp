@@ -77,10 +77,10 @@ yarn add @wuba/react-native-echarts echarts
 yarn add react-native-reanimated
 yarn add @shopify/react-native-skia
 ```
+* react-native-gifted-charts: 图表库
 * react-native-svg-charts: 图表库，5年未更新
 * react-native-chart-kit: 图表库，3年未更新
 * clchart: 股票图表库，6年未更新
-* react-native-gifted-charts: 图表库
 * @react-native-seoul/masonry-list: 瀑布流
 * @shopify/flash-list: 强大的瀑布流
 * @gorhom/bottom-sheet: 底部下拉框类似高德地图首页
